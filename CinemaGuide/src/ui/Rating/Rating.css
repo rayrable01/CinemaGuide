@@ -1,0 +1,34 @@
+.header__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 16px;
+    padding: 2px 8px;
+    width: 47px;
+    height: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 133%;
+    color: var(--content-primary);
+}
+
+.header__rating img {
+    width: 10px;
+    height: 10px;
+}
+
+.hero__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 16px;
+    padding: 4px 12px;
+    width: 70px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+}

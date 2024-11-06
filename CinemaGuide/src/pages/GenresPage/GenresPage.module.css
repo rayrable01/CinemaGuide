@@ -1,0 +1,26 @@
+.genres__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 64px 15px 160px 15px;
+}
+
+.genres__section {
+    background: var(--background-black);
+}
+
+.genres__title {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: var(--content-primary);
+    margin-bottom: 64px;
+}
+
+.genres__error {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-secondary);
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+.hero__button_about {
+    border: 1px solid var(--content-placeholder);
+    border-radius: 28px;
+    padding: 16px 22px;
+    text-align: center;
+    width: 183px;
+    height: 56px;
+    background-color: var(--background-secondary);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.hero__button_about:hover {
+    background: var(--background-white);
+    color: var(--content-black);
+}

@@ -1,0 +1,19 @@
+.hero__button_trailer {
+    border-radius: 28px;
+    padding: 16px 48px;
+    width: 171px;
+    height: 56px;
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+    background-color: var(--background-brand-active);
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.hero__button_trailer:hover {
+    background: var(--background-white);
+    color: var(--content-black);
+}

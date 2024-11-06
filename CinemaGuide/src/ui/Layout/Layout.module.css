@@ -1,0 +1,118 @@
+.header__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 96px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(20px); 
+    z-index: 3; 
+}
+
+.header__container,
+.header__nav,
+.header__list {
+    display: flex;
+    align-items: center;
+}
+
+.header__container {
+    justify-content: space-between;
+    padding: 24px 15px;
+    gap: 80px;
+}
+
+.header__nav {
+    gap: 40px;
+}
+
+.header__list {
+    gap: 40px;
+}
+
+.header__nav_link {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--background-white);
+    transition-property: border, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.header__login {
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--background-white);
+    transition: color 0.3s ease-in-out;
+}
+
+.footer__container,
+.main__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer__container,
+.footer__list {
+    display: flex;
+    align-items: center;
+}
+
+.footer__container {
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.header__nav_link.active {
+    border-bottom: 1.50px solid #dc5dfc;
+    padding: 0 0 8px 0;
+}
+
+.header__nav_link:hover,
+.header__login:hover {
+    color: #dc5dfc;
+}
+
+.footer__list {
+    gap: 24px
+}
+
+.footer {
+    min-height: 120px;
+    background-color: var(--background-black);
+}
+
+.footer__copyrite_paragraph {
+    display: flex;
+    gap: 12px;
+}
+
+.footer__copyrite_title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+}
+
+.footer__copyrite_text {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-secondary)
+}

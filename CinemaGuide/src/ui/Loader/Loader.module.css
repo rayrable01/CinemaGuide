@@ -1,0 +1,21 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 6px solid rgba(255, 255, 255, 0.2); /* Полупрозрачный цвет для внешнего кольца */
+    border-top-color: #ffffff; /* Белый цвет для верхней части, создает эффект вращения */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

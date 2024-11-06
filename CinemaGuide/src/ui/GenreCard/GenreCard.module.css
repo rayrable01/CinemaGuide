@@ -1,0 +1,21 @@
+.card__bottom {
+    height: 84px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 133%;
+    text-align: center;
+    color: var(--content-primary);
+    background: var(--background-black);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__wrapper img {
+    height: 100%;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    display: block;
+}

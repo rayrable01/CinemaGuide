@@ -1,0 +1,26 @@
+.rating__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 15px 120px 15px;
+}
+
+.rating__section {
+    background: var(--background-black);
+}
+
+.rating__title {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: var(--content-primary);
+    margin-bottom: 64px;
+}
+
+.rating__error {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-secondary);
+    text-align: center;
+}

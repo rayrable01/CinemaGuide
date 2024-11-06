@@ -1,0 +1,34 @@
+.card__wrapper {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.card__number {
+    position: absolute;
+    top: -13px;
+    left: -19px;
+    border-radius: 50px;
+    padding: 8px 15px;
+    width: 62px;
+    height: 48px;
+    background: var(--background-white);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--background-brand-active);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card__wrapper:hover .card__number {
+    background-color: var(--content-black); 
+    color: white;
+}
+

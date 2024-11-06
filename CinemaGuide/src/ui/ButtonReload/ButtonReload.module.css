@@ -1,0 +1,17 @@
+.hero__button_reload {
+    border: 1px solid var(--content-placeholder);
+    border-radius: 28px;
+    padding: 16px 19px;
+    width: 68px;
+    height: 56px;
+    background-color: #333;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.hero__button_reload:hover {
+    background: var(--background-white);
+}
+
+.hero__button_reload:hover svg path {
+    fill: var(--content-black);
+}

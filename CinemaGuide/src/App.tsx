@@ -14,7 +14,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path='/movie/genres' element={<GenresPage />} />
+            <Route path='/genres' element={<GenresPage />} />
             <Route path='/movie/:movieId' element={<FilmPage />} /> 
           </Routes>
         </Layout>

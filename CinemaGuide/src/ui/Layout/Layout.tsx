@@ -26,10 +26,10 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                 <nav className={styles.header__nav}>
                     <ul className={styles.header__list}>
                         <li className={styles.header__list_item}>
-                            <Link to={'/'} className={`${styles.header__nav_link} ${location.pathname === '/' ? styles.active : ''}`}>Главная</Link>
+                            <Link to={'/'} className={`${styles.header__nav_link} ${location.pathname === '/' || location.pathname.startsWith(`/movie/`) ? styles.active : ''}`}>Главная</Link>
                         </li>
                         <li className={styles.header__list_item}>
-                            <Link to={'/movie/genres'} className={`${styles.header__nav_link} ${location.pathname === '/movie/genres' ? styles.active : ''}`}>Жанры</Link>
+                            <Link to={'/genres'} className={`${styles.header__nav_link} ${location.pathname === '/genres' ? styles.active : ''}`}>Жанры</Link>
                         </li>
                     </ul>
                     <SearchBar />

@@ -1,0 +1,59 @@
+.section__descr {
+    background: var(--background-black);
+}
+
+.descr__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 15px 120px 15px;
+}
+
+.descr__title {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    color: var(--content-primary);
+    margin-bottom: 64px;
+}
+
+.item__left_text,
+.item__right {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+}
+
+
+.descr__item {
+    display: flex;
+    align-items: center;
+}
+
+.descr__item:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.descr__left {
+    display: flex;
+    align-items: center;
+    width: 320px; /* Фиксированная ширина для левой части */
+    position: relative;
+}
+
+.item__left_text {
+    flex-shrink: 0;
+}
+
+.item__dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted #ccc; /* Линия с точками */
+    margin-left: 8px; /* Отступ между текстом и точками */
+}
+
+.item__right {
+    margin-left: 8px;
+    white-space: nowrap;
+}
+

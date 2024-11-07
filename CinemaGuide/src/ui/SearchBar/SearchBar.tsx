@@ -9,11 +9,11 @@ export const SearchBar = () => {
     const {data, isError, isLoading} = useFilmsList();
     const [searchParam, setSearchParam] = useSearchParams()
 
-    const searchFilm = searchParam.get('searchFilm') || '';
+    const searchFilm = searchParam.get('title') || '';
 
     const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>): void => {
         const {value} = event.target;
-        setSearchParam({'searchFilm': value.toLowerCase()});
+        setSearchParam({'title': value.toLowerCase()});
     }
 
     const filteredFilms = searchFilm ? data.filter((film) => film.title?.toLowerCase().includes(searchFilm.toLowerCase())) : [];

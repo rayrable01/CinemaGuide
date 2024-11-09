@@ -1,0 +1,20 @@
+.button {
+    border-radius: 28px;
+    padding: 16px 48px;
+    width: 218px;
+    height: 56px;
+    background: var(--background-brand-active);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+    border: none;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background: var(--background-brand-disabled);
+    cursor: default;
+}

@@ -46,19 +46,32 @@ export const fetchFilmsListSchema = z.array(filmSchema);
 export type fetchFilmsListType = z.infer<typeof fetchFilmsListSchema>
 
 // Функция запрос на получение фильмов + фильр
-// export interface FilmListParams {
-//     genre?: string,
-//     title?: string,
-//     count?: number,
-//     page?: number,
-// }
+export interface FilmListParams {
+    genre?: string;
+    title?: string;
+    count?: number;
+    page?: number;
+}
 
-export const fetchFilmsList = (): Promise<fetchFilmsListType> => {
-    return fetch(`${API_URL}/movie`)
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => fetchFilmsListSchema.parse(data))
+export const fetchFilmsList = (params: FilmListParams): Promise<fetchFilmsListType> => {
+    // Конструируем URL с query-параметрами
+    const query = new URLSearchParams();
+
+    // Добавляем параметры к запросу только если они определены
+    if (params.genre) query.append("genre", params.genre);
+    if (params.title) query.append("title", params.title);
+    if (params.count) query.append("count", params.count.toString());
+    if (params.page) query.append("page", params.page.toString());
+
+    // Собираем полный URL
+    const url = `${API_URL}/movie?${query.toString()}`;
+
+    return fetch(url)
+        .then(response => validateResponse(response))
+        .then(res => res.json())
+        .then(data => fetchFilmsListSchema.parse(data));
 };
+
 
 // Функция на получение топ 10 фильмов.
 export const fetchTopFilmsList = (): Promise<fetchFilmsListType> => {

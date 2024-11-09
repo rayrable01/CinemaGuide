@@ -5,6 +5,7 @@ import { MainPage } from './pages/MainPage/MainPage'
 import { GenresPage } from './pages/GenresPage/GenresPage'
 import { MainPageProvider } from './pages/MainPage/MainPageContext'
 import { FilmPage } from './pages/FilmPage/FilmPage'
+import { GenreFilmsPage } from './pages/GenreFilmsPage/GenreFilmsPage'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path='/genres' element={<GenresPage />} />
-            <Route path='/movie/:movieId' element={<FilmPage />} /> 
+            <Route path='/movie/:movieId' element={<FilmPage />} />
+            <Route path='/movies' element={<GenreFilmsPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>

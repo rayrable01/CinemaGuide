@@ -1,4 +1,4 @@
-import { fetchFilmsList, filmsListType } from "../api/filmsRequests"
+import { fetchFilmsList, FilmListParams, filmsListType } from "../api/filmsRequests"
 import { useQuery } from "@tanstack/react-query"
 import { queryClient } from "../api/queryClient"
 
@@ -7,12 +7,12 @@ export interface ResponseFilmsList {
     isError: boolean,
     isLoading: boolean
 }
-export const useFilmsList = (): ResponseFilmsList => { // QUERY PARAMS СДЕЛАТЬ. COUNT 5
-    const {data, isError, isLoading} = useQuery({
-        queryFn: fetchFilmsList,
-        queryKey: ['films'],
+export const useFilmsList = (params: FilmListParams = { count: 5 }): ResponseFilmsList => { 
+    const { data, isError, isLoading } = useQuery({
+        queryFn: () => fetchFilmsList(params),
+        queryKey: ['films', params],
         initialData: [],
-    }, queryClient)
+    }, queryClient);
 
-    return {data, isError, isLoading}
-}
+    return { data, isError, isLoading };
+};

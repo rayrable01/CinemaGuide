@@ -6,17 +6,16 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Rating } from "../Rating/Rating";
 
 export const SearchBar = () => {
-    const {data, isError, isLoading} = useFilmsList();
     const [searchParam, setSearchParam] = useSearchParams()
-
     const searchFilm = searchParam.get('title') || '';
+
+    const {data, isError, isLoading} = useFilmsList({title: searchFilm, count: 5});
 
     const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>): void => {
         const {value} = event.target;
         setSearchParam({'title': value.toLowerCase()});
     }
 
-    const filteredFilms = searchFilm ? data.filter((film) => film.title?.toLowerCase().includes(searchFilm.toLowerCase())) : [];
 
     return (
         <div className={styles.header__search_wrapper}>
@@ -40,9 +39,9 @@ export const SearchBar = () => {
                     Загрузка
                 </li>
             </ul>}
-            {filteredFilms && filteredFilms.length > 0 ? (
+            {searchFilm && data && data.length > 0 ? (
                 <ul className={styles.header__filtered_list}>
-                    {filteredFilms.map(film => (
+                    {data.map(film => (
                         <li className={styles.header__filtered_item} key={film.id}>
                             <Link to={`/movie/${film.id}`}>
                             <div className={styles.header__film_wrapper}>

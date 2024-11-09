@@ -32,6 +32,7 @@ interface GenreListProps {
 // ]
 
 export const GenreList: FC<GenreListProps> = ({data}) => {
+
     return (
         <ul className={styles.genre__list}>
             {Array.isArray(data) && data.map((genre, index) => (

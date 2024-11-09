@@ -1,0 +1,37 @@
+.films__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 64px 15px 160px 15px;
+}
+
+.films__section {
+    position: relative;
+    background-color: var(--background-black);
+    z-index: 1;
+}
+
+
+.films__error {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-secondary);
+    text-align: center;
+}
+
+.genre__title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 117%;
+    color: var(--content-primary);
+}
+
+.genre__title_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-bottom: 64px;
+}
+

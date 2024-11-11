@@ -6,8 +6,9 @@ import vk from '../../assets/vk.svg'
 import youtube from '../../assets/youtube.svg'
 import ok from '../../assets/ok.svg'
 import tg from '../../assets/telegram.svg'
-import { FC, ReactElement, ReactNode } from 'react';
+import { FC, ReactElement, ReactNode, useState } from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { AuthForm } from '../AuthForm/AuthForm';
 
 type LayoutProps = {
     children: ReactElement | ReactNode;
@@ -15,6 +16,10 @@ type LayoutProps = {
 
 export const Layout: FC<LayoutProps> = ({children}) => {
     const location = useLocation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     
     return (
         <>
@@ -35,7 +40,7 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                     <SearchBar />
                 </nav>
 
-                <Link to={'#'} className={styles.header__login}>Войти</Link>
+                <Link to={'#'} className={styles.header__login} onClick={openModal}>Войти</Link>
             </div>
         </header>
         <main className={styles.main}>
@@ -74,6 +79,12 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                 </div>
             </div>
         </footer>
+
+        {isModalOpen && (
+            <div className={styles.modal}>
+                <AuthForm onClick={closeModal} />
+            </div>
+        )}
         </>
     )
 }

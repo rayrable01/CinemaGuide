@@ -1,0 +1,28 @@
+.modal__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: var(--background-white);
+    position: relative;
+    padding: 64px 40px;
+    border-radius: 24px;
+    max-width: 420px;
+    width: 100%;
+    min-height: 400px
+}
+
+.modal__img {
+    width: 180px;
+    height: 24px;
+    margin-bottom: 40px;
+}
+
+.modal__switch {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-black);
+    border: none;
+    background-color: transparent;
+}

@@ -1,0 +1,66 @@
+.register__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-black);
+    margin-bottom: 24px;
+}
+
+.register__form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+.register__form input {
+    border: 1px solid var(--content-placeholder);
+    border-radius: 8px;
+    padding: 16px 16px 16px 52px;
+    width: 100%;
+    height: 56px;
+    background-color: var(--background-white);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-placeholder);
+    background-position: 16px center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+}
+
+.email__input {
+    background-image: url('../../assets/mail.svg');
+}
+
+.surname__input,
+.name__input {
+    background-image: url('../../assets/user.svg');
+}
+
+.password__input,
+.password_submit_input {
+    background-image: url('../../assets/password.svg');
+}
+
+.password_submit_input {
+    margin-bottom: 12px;
+}
+
+.register__button {
+    border: none;
+    border-radius: 28px;
+    padding: 16px 48px;
+    width: 340px;
+    height: 56px;
+    background: var(--background-brand-active);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+    margin-bottom: 24px;
+}

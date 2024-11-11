@@ -15,13 +15,22 @@ export type userSchemaType = z.infer<typeof userSchema>
 
 // Схема регистрации
 export const registerDataSchema = z.object({
-    email: z.string(), // required
-    password: z.string(), // required 
-    name: z.string(),
-    surname: z.string()
+    email: z.string().regex(/@.*\.(com|ru)$/, 'Некорректный email'),
+    password: z.string().min(6, "Пароль должен содержать минимум 6 симоволов"), 
+    name: z.string().min(1, 'Поле обязательно к заполнению'),
+    surname: z.string().min(1, 'Поле обязательно к заполнению'),
 })
 
-export type registerDataType = z.infer<typeof registerDataSchema>
+export const registerValidationSchema = registerDataSchema.extend({
+    confirmPassword: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
+    }).refine((data) => data.password === data.confirmPassword, {
+        path: ["confirmPassword"],
+        message: "Пароли не совпадают",
+});
+
+
+export type RegisterValidationType = z.infer<typeof registerValidationSchema>;
+export type RegisterDataType = z.infer<typeof registerDataSchema>
 
 // Схема аунтефикации ( логина )
 
@@ -34,7 +43,7 @@ export type AuthInfoSchemaType = z.infer<typeof AuthInfoSchema>
 
 
 // Функция регистрации пользователя.
-export const registerUser = ({email, password, name, surname}: registerDataType): Promise<void>  => {
+export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void>  => {
     return fetch(`${API_URL}/user`, {
         method: "POST",
         headers: {

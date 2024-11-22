@@ -35,7 +35,7 @@ export type RegisterDataType = z.infer<typeof registerDataSchema>
 // Схема аунтефикации ( логина )
 
 export const AuthInfoSchema = z.object({
-    email: z.string(),
+    email: z.string().regex(/@.*\.(com|ru)$/, 'Некорректный email'),
     password: z.string(),
 })
 
@@ -65,6 +65,7 @@ export const loginUser = ({email, password}: AuthInfoSchemaType): Promise<void> 
         headers: {
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
             email: email,
             password: password
@@ -84,7 +85,14 @@ export const logoutUser = (): Promise<void> => {
 
 // Функция проверки данных об пользователе
 export const fetchMe = (): Promise<userSchemaType> => {
-    return fetch(`${API_URL}/profile`)
+    return fetch(`${API_URL}/profile`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            accept: "application/json"
+        },
+        credentials: "include"
+    })
     .then(response => validateResponse(response))
     .then(res => res.json())
     .then(data => userSchema.parse(data));

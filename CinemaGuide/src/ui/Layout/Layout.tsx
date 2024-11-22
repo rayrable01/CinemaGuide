@@ -6,9 +6,10 @@ import vk from '../../assets/vk.svg'
 import youtube from '../../assets/youtube.svg'
 import ok from '../../assets/ok.svg'
 import tg from '../../assets/telegram.svg'
-import { FC, ReactElement, ReactNode, useState } from 'react';
+import { FC, ReactElement, ReactNode, useContext, useState } from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { AuthForm } from '../AuthForm/AuthForm';
+import { MainPageContext } from '../../pages/MainPage/MainPageContext';
 
 type LayoutProps = {
     children: ReactElement | ReactNode;
@@ -16,6 +17,7 @@ type LayoutProps = {
 
 export const Layout: FC<LayoutProps> = ({children}) => {
     const location = useLocation();
+    const {userData} = useContext(MainPageContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -40,7 +42,11 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                     <SearchBar />
                 </nav>
 
-                <Link to={'#'} className={styles.header__login} onClick={openModal}>Войти</Link>
+                {userData && userData.name ? (
+                    <Link to={'#'} className={styles.header__login} onClick={() => console.log()}>{userData.name}</Link>
+                ): (
+                    <Link to={'#'} className={styles.header__login} onClick={openModal}>Войти</Link>
+                )}
             </div>
         </header>
         <main className={styles.main}>

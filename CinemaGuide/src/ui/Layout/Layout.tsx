@@ -4,12 +4,14 @@ import { Link, useLocation } from "react-router-dom";
 import headerLogo from '../../assets/logo.svg'
 import vk from '../../assets/vk.svg'
 import youtube from '../../assets/youtube.svg'
+import adaptiveIcon from '../../assets/genres.svg'
 import ok from '../../assets/ok.svg'
 import tg from '../../assets/telegram.svg'
-import { FC, ReactElement, ReactNode, useContext, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, useContext, useState} from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { AuthForm } from '../AuthForm/AuthForm';
-import { MainPageContext } from '../../pages/MainPage/MainPageContext';
+import { MainPageContext} from '../../pages/MainPage/MainPageContext';
+import { Trailer } from '../Trailer/Trailer';
 
 type LayoutProps = {
     children: ReactElement | ReactNode;
@@ -18,10 +20,24 @@ type LayoutProps = {
 export const Layout: FC<LayoutProps> = ({children}) => {
     const location = useLocation();
     const {userData} = useContext(MainPageContext)
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const {isModalOpen, setIsModalOpen} = useContext(MainPageContext);
+    const {isTrailerOpen} = useContext(MainPageContext);
+    const [adaptiveListOpen, setAdaptiveListOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 800);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 800);
+    }
+
+    React.useEffect(() => {
+            window.addEventListener('resize', handleResize);
+            return () => {
+                window.removeEventListener('resize', () => handleResize);
+            }
+        }, [])
     
     return (
         <>
@@ -30,7 +46,7 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                 <Link to={'/'} className={styles.header__link}>
                     <img src={headerLogo} alt="LOGO IMAGE" className={styles.header__logo}></img>
                 </Link>
-                <nav className={styles.header__nav}>
+                <nav className={`${styles.header__nav} ${adaptiveListOpen ? styles.active : ""}`}>
                     <ul className={styles.header__list}>
                         <li className={styles.header__list_item}>
                             <Link to={'/'} className={`${styles.header__nav_link} ${location.pathname === '/' || location.pathname.startsWith(`/movie/`) ? styles.active : ''}`}>Главная</Link>
@@ -39,11 +55,22 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                             <Link to={'/genres'} className={`${styles.header__nav_link} ${location.pathname === '/genres' ? styles.active : ''}`}>Жанры</Link>
                         </li>
                     </ul>
-                    <SearchBar />
                 </nav>
 
+                <SearchBar />
+
+                <button className={styles.header__menu_button} onClick={() => setAdaptiveListOpen(!adaptiveListOpen)}>
+                        <img src={adaptiveIcon} alt='img'></img>
+                </button>
+                
                 {userData && userData.name ? (
-                    <Link to={'#'} className={styles.header__login} onClick={() => console.log()}>{userData.name}</Link>
+                    <Link to={'/personal/settings'} className={`${styles.header__login} ${(location.pathname === '/personal/settings' || location.pathname === '/personal/favorites') && styles.active}`}>
+                        {isMobile ? (
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z" fill="white" />
+                            </svg>
+                        ) : (userData.name)}
+                    </Link>
                 ): (
                     <Link to={'#'} className={styles.header__login} onClick={openModal}>Войти</Link>
                 )}
@@ -91,6 +118,13 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                 <AuthForm onClick={closeModal} />
             </div>
         )}
+
+        {isTrailerOpen && (
+            <div className={styles.modal}>
+                <Trailer />
+            </div>
+        )}
+
         </>
     )
 }

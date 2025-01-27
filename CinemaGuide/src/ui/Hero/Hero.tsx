@@ -42,7 +42,7 @@ export const Hero = () => {
                     <div className={styles.hero__button_wrapper}>
                         <TrailerButton />
                         <AboutFilmButton movieId={data.id} />
-                        <LikeButton />
+                        <LikeButton movie={data} />
                         <ButtonReload />
                     </div>
                 </div>

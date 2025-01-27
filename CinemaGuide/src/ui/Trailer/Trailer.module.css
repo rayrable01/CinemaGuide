@@ -1,0 +1,15 @@
+.modal__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--content-disabled);
+    width: 960px;
+    height: 540px;
+    background-color: grey;
+}
+
+.modal__content .modal__close {
+    right: -75px;
+    position: absolute;
+}

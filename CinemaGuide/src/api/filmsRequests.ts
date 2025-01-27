@@ -1,5 +1,6 @@
 import z from 'zod'
 import { validateResponse } from './validateRespose';
+import { queryClient } from './queryClient';
 
 const API_URL = 'https://cinemaguide.skillbox.cc'
 
@@ -110,3 +111,32 @@ export const fetchFilmsGenre = (): Promise<genreListShemaType> => {
     .then(res => res.json())
     .then(data => genreListSchema.parse(data));
 };
+
+// Получение любимых фильмов
+export const fetchFavoritesFilms = (): Promise<filmsListType>  => {
+    return fetch(`${API_URL}/favorites`, {
+        method: "GET",
+        credentials: "include",
+    })
+    .then(response => validateResponse(response))
+    .then(res => res.json())
+    .then(data => filmsListSchema.parse(data));
+}
+
+export const addFavoriteFilm = (id: number): Promise<void> => {
+    return fetch(`${API_URL}/favorites`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        credentials: "include",
+        body: `id=${encodeURIComponent(id.toString())}`,
+    }).then(validateResponse).then(() => {queryClient.invalidateQueries({queryKey: ['favoriteFilms']})}).then(() => undefined);
+}
+
+export const removeFavoriteFilm = (movieId: number): Promise<void> => {
+    return fetch(`${API_URL}/favorites/${movieId}`, {
+        method: 'DELETE',
+        credentials: "include",
+    }).then(validateResponse).then(() => undefined)
+}

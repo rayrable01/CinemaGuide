@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC} from 'react'
 import { filmSchemaType } from '../../api/filmsRequests'
 import { Rating } from '../Rating/Rating'
 import { TrailerButton } from '../TrailerButton/TrailerButton'
@@ -7,8 +7,9 @@ import icon from '../../assets/star.svg'
 import { LikeButton } from '../LikeButton/LikeButton'
 import { FormatTime } from '../../hooks/FormatTime'
 
+
 interface HeroFilmProps {
-    movieData: filmSchemaType | undefined
+    movieData: filmSchemaType
 }
 
 export const HeroFilm: FC<HeroFilmProps> = ({movieData}) => {
@@ -39,7 +40,7 @@ export const HeroFilm: FC<HeroFilmProps> = ({movieData}) => {
                     </div>
                     <div className={styles.hero__button_wrapper}>
                         <TrailerButton />
-                        <LikeButton />
+                        <LikeButton movie={movieData} />
                     </div>
                 </div>
                 <div className={styles.hero__background} style={{backgroundImage: `url(${backgroundImage})`}}>

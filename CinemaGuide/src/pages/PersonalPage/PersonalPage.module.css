@@ -1,0 +1,140 @@
+.profile__container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 110px 15px;
+}
+
+.profile__section {
+    background-color: var(--background-black);
+}
+
+.profile__title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 117%;
+    color: var(--content-primary);
+    margin-bottom: 64px;
+}
+
+.profile__favorites,
+.profile__settings {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--background-white);
+}
+
+.profile__navigation {
+    display: flex;
+    gap: 64px;
+    margin-bottom: 64px;
+}
+
+.personal__title,
+.personal__email__title {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+}
+
+.profile__info_wrapper {
+    max-width: 482px;
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.profile__settings.active,
+.profile__favorites.active {
+    border-bottom: 1.50px solid #dc5dfc;
+    padding: 0 0 8px 0;
+}
+
+.personal__name,
+.personal__email {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-primary);
+}
+
+.profile__content__wrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.profile__special_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profile__content__wrapper:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.profile__logout_btn {
+    border-radius: 28px;
+    padding: 9 25px;
+    border: none;
+    width: 262px;
+    height: 56px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 133%;
+    color: var(--content-primary);
+    background: var(--background-brand-active);
+}
+
+.profile__img_div {
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--background-disabled);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 133%;
+    color: var(--content-primary)
+}
+
+.favorites__list {
+    display: flex;
+    gap: 40px;
+    row-gap: 64px;
+    flex-wrap: wrap;
+}
+
+.list__item {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    width: 224px;
+    min-height: 336px;
+    box-shadow: 0 0 80px 0 rgba(255, 255, 255, 0.33);
+}
+
+.removeButton {
+    visibility: hidden;
+    cursor: pointer;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    background: var(--background-white);
+    transition: opacity 0.6s ease-in-out;
+}
+
+.list__item:hover .removeButton {
+    visibility: visible;
+    opacity: 1;
+}

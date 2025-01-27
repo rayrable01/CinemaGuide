@@ -9,6 +9,7 @@ import { MainPage } from "../pages/MainPage/MainPage"
 import { GenresPage } from "../pages/GenresPage/GenresPage"
 import { FilmPage } from "../pages/FilmPage/FilmPage"
 import { GenreFilmsPage } from "../pages/GenreFilmsPage/GenreFilmsPage"
+import { PersonalPage } from "../pages/PersonalPage/PersonalPage"
 
 export const Account = () => {
     const myQuery = useQuery({
@@ -33,7 +34,7 @@ export const Account = () => {
                                 <Route path='/genres' element={<GenresPage />} />
                                 <Route path='/movie/:movieId' element={<FilmPage />} />
                                 <Route path='/movies' element={<GenreFilmsPage />} />
-                                </Routes>
+                            </Routes>
                         </Layout>
                     </BrowserRouter>
                 </MainPageProvider>
@@ -42,7 +43,7 @@ export const Account = () => {
         case 'success':
             console.log('Successful login!')
             return (
-                <MainPageProvider userData={myQuery.data}>
+                <MainPageProvider userData={myQuery.data} >
                     <BrowserRouter>
                         <Layout>
                             <Routes>
@@ -50,6 +51,8 @@ export const Account = () => {
                                 <Route path='/genres' element={<GenresPage />} />
                                 <Route path='/movie/:movieId' element={<FilmPage />} />
                                 <Route path='/movies' element={<GenreFilmsPage />} />
+                                <Route path='/personal/settings' element={<PersonalPage />} />
+                                <Route path='/personal/favorites' element={<PersonalPage />} />
                             </Routes>
                         </Layout>
                     </BrowserRouter>

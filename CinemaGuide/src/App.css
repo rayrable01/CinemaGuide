@@ -1,5 +1,13 @@
 #root {
   width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+	flex: 1;
+	background-color: var(--background-black);
 }
 
 :root {

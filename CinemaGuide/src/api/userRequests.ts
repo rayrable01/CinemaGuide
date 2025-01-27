@@ -77,6 +77,7 @@ export const loginUser = ({email, password}: AuthInfoSchemaType): Promise<void> 
 export const logoutUser = (): Promise<void> => {
     return fetch(`${API_URL}/auth/logout`, {
         method: "GET",
+        credentials: 'include',
         headers: {
             "Content-Type": "application/json"
         }

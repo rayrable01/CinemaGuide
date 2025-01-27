@@ -4,17 +4,20 @@ import { AuthInfoSchema, AuthInfoSchemaType, loginUser } from '../../api/userReq
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../api/queryClient'
+import { useNavigate } from 'react-router-dom'
 
 export const LoginForm = () => {
     const { register, handleSubmit, formState: {errors}} = useForm<AuthInfoSchemaType>({
         resolver: zodResolver(AuthInfoSchema)
     })
+    const navigate = useNavigate();
 
     const loginMutation = useMutation({
         mutationFn: ({email, password}: AuthInfoSchemaType) => loginUser({email, password}),
         onSuccess() {
             console.log('Login successful!')
             queryClient.invalidateQueries({queryKey: ['users', 'me']})
+            navigate("/personal/settings")
         },
         onError: (error) => {
             console.log(error.message)

@@ -22,7 +22,7 @@ export const Layout: FC<LayoutProps> = ({children}) => {
     const {userData} = useContext(MainPageContext)
     const {isModalOpen, setIsModalOpen} = useContext(MainPageContext);
     const {isTrailerOpen} = useContext(MainPageContext);
-    const [adaptiveListOpen, setAdaptiveListOpen] = useState(false);
+    const [adaptiveListOpen, setAdaptiveListOpen] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 800);
 
     const openModal = () => setIsModalOpen(true);

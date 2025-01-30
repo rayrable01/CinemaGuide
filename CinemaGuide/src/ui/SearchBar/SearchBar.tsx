@@ -24,7 +24,7 @@ export const SearchBar = () => {
         if (window.innerWidth > 800) {
             setIsSearchOpen(false);
         }
-        console.log(`Меняется расширение на: ${window.innerWidth}`)
+        setSearchParam({})
     }
 
     React.useEffect(() => {

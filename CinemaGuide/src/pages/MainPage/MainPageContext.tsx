@@ -3,7 +3,6 @@ import { useRandomFilm } from "../../hooks/useRandomFilm";
 import { useRatedFilms } from "../../hooks/useRatedFilms";
 import { userSchemaType } from "../../api/userRequests";
 import { useFavoriteFilms } from "../../hooks/useFavoriteFilms";
-import { filmSchemaType } from "../../api/filmsRequests";
 
 export const MainPageContext = createContext<any>(null);
 
@@ -18,6 +17,7 @@ export const MainPageProvider: FC<ProviderProps> = ({children, userData}) => {
     const favoriteFilms = useFavoriteFilms();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isTrailerOpen, setIsTrailerOpen] = useState<boolean>(false);
+    const [filmForTrailer, setFilmForTrailer] = useState();
 
     const refetchFilm = async () => {
         await randomFilm.refetch();
@@ -34,6 +34,8 @@ export const MainPageProvider: FC<ProviderProps> = ({children, userData}) => {
             setIsModalOpen, 
             isTrailerOpen, 
             setIsTrailerOpen,
+            filmForTrailer,
+            setFilmForTrailer
             }}>
             {children}
         </MainPageContext.Provider>

@@ -39,7 +39,7 @@ export const HeroFilm: FC<HeroFilmProps> = ({movieData}) => {
                         <p className={styles.hero__shortdescr}>{movieData?.plot}</p>
                     </div>
                     <div className={styles.hero__button_wrapper}>
-                        <TrailerButton />
+                        <TrailerButton movieURL={movieData.trailerUrl}/>
                         <LikeButton movie={movieData} />
                     </div>
                 </div>

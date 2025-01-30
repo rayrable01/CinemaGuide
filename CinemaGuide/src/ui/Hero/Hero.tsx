@@ -40,7 +40,7 @@ export const Hero = () => {
                         <p className={styles.hero__shortdescr}>{data?.plot}</p>
                     </div>
                     <div className={styles.hero__button_wrapper}>
-                        <TrailerButton />
+                        <TrailerButton movieURL={data.trailerUrl}/>
                         <AboutFilmButton movieId={data.id} />
                         <LikeButton movie={data} />
                         <ButtonReload />

@@ -138,3 +138,28 @@
     visibility: visible;
     opacity: 1;
 }
+
+.profile__favorites,
+.profile__settings {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 800px) {
+    .favorites__list {
+        flex-wrap: nowrap;
+        overflow: scroll;
+        padding: 20px;
+    }
+
+    .list__item {
+        min-width: 224px;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile__navigation {
+        gap: 10px
+    }
+}

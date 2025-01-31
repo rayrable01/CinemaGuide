@@ -57,3 +57,36 @@
     white-space: nowrap;
 }
 
+@media (max-width: 700px) {
+    .descr__item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item__dots {
+        display: none;
+    }
+
+    .item__right {
+        margin: 0;
+        white-space: unset;
+    }
+
+    .item__left_text {
+        margin-bottom: 4px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 143%;
+        color: var(--content-disabled);
+    }
+
+    .descr__title {
+        font-size: 24px;
+        line-height: 133%;
+        margin-bottom: 40px;
+    }
+
+    .descr__container {
+        padding-bottom: 0;
+    }
+}

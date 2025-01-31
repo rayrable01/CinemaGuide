@@ -1,7 +1,8 @@
-import { FC, useContext } from 'react';
+import { useContext } from 'react';
 import { ModalClose } from '../ModalClose/ModalClose';
 import styles from './Trailer.module.css';
 import { MainPageContext } from '../../pages/MainPage/MainPageContext';
+import ReactPlayer from 'react-player';
 
 
 export const Trailer = () => {
@@ -14,13 +15,12 @@ export const Trailer = () => {
     return (
         <div className={styles.modal__content}>
             {filmForTrailer && (
-                <iframe
-                width="560"
-                height="315"
-                src={filmForTrailer}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
+                <ReactPlayer
+                width="100%"
+                height="100%"
+                url={filmForTrailer}
+                controls={true}
+            ></ReactPlayer>
             )}
             <ModalClose onClick={onClick} />
         </div>

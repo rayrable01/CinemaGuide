@@ -24,3 +24,9 @@
     color: var(--content-secondary);
     text-align: center;
 }
+
+@media (max-width: 800px) {
+    .rating__container {
+        padding-bottom: 30px;
+    }
+}

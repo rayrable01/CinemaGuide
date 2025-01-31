@@ -17,3 +17,9 @@
     background: var(--background-white);
     color: var(--content-black);
 }
+
+@media (max-width: 510px) {
+    .hero__button_trailer {
+        min-width: 100%;
+    }
+}

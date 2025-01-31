@@ -89,3 +89,46 @@
     justify-content: flex-start;
     gap: 16px;
 }
+
+
+@media (max-width: 700px) {
+    .hero__container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+    .hero__content {
+        order: 2;
+    }
+
+    .hero__background {
+        position: static;
+        height: 430px;
+        order: 1;
+        width: 100%;
+        z-index: 1;
+        margin-bottom: 20px;
+    }
+
+    .hero__main_rate {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 510px) {
+
+    .hero__button_wrapper {
+        flex-wrap: wrap;
+    }
+
+    .hero__background {
+        height: 260px;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero__button_wrapper {
+        column-gap: 10px;
+    }
+}

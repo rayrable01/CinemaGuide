@@ -189,10 +189,31 @@
     .header__link {
         margin-right: auto;
     }
+
+    .footer__container {
+        flex-direction: column;
+        gap: 32px;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .footer__copyrite_paragraph {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 650px) {
     .header__link {
         max-width: 185px;
+    }
+}
+
+@media (max-width: 410px) {
+    .header__link {
+        max-width: 136px;
+    }
+
+    .header__container {
+        gap: 5px
     }
 }

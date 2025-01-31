@@ -17,3 +17,9 @@
     background: var(--background-white);
     color: var(--content-black);
 }
+
+@media (max-width: 380px) {
+    .hero__button_about {
+        width: 133px;
+    }
+}

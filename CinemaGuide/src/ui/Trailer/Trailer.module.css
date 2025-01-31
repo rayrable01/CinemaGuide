@@ -13,3 +13,10 @@
     right: -75px;
     position: absolute;
 }
+
+@media (max-width: 1150px) {
+    .modal__content .modal__close {
+        right: 20px;
+        top: 20px;
+    }
+}

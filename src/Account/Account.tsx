@@ -31,9 +31,9 @@ export const Account = () => {
                         <Layout>
                             <Routes>
                                 <Route path="/" element={<MainPage />} />
-                                <Route path='/genres' element={<GenresPage />} />
-                                <Route path='/movie/:movieId' element={<FilmPage />} />
-                                <Route path='/movies' element={<GenreFilmsPage />} />
+                                <Route path='/CinemaGuide/genres' element={<GenresPage />} />
+                                <Route path='/CinemaGuide/movie/:movieId' element={<FilmPage />} />
+                                <Route path='/CinemaGuide/movies' element={<GenreFilmsPage />} />
                             </Routes>
                         </Layout>
                     </BrowserRouter>

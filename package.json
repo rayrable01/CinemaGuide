@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://rayrable01.github.io/CinemaGuide/",
+  "homepage": "https://rayrable01.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -r https://github.com/rayrable01/CinemaGuide.git -b gh-pages -d dist"
+
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

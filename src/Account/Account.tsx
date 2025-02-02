@@ -44,7 +44,7 @@ export const Account = () => {
             console.log('Successful login!')
             return (
                 <MainPageProvider userData={myQuery.data} >
-                    <BrowserRouter  basename="/CinemaGuide/">
+                    <BrowserRouter>
                         <Layout>
                             <Routes>
                                 <Route path="/" element={<MainPage />} />

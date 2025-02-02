@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/rayrable01/CinemaGuide",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

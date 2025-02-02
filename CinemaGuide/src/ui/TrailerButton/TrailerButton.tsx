@@ -1,8 +1,12 @@
-import { useContext } from 'react'
+import { FC, useContext } from 'react'
 import styles from './TrailerButton.module.css'
 import { MainPageContext } from '../../pages/MainPage/MainPageContext'
 
-export const TrailerButton = ({movieURL}) => {
+interface TrailerButtonProps {
+    movieURL: string
+}
+
+export const TrailerButton: FC<TrailerButtonProps> = ({movieURL}) => {
     const {setIsTrailerOpen, setFilmForTrailer} = useContext(MainPageContext);
     const handleClick = () => {
         setIsTrailerOpen(true)

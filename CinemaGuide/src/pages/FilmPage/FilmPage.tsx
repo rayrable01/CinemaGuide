@@ -4,6 +4,7 @@ import styles from './FilmPage.module.css'
 import { useParams } from "react-router-dom"
 import Loader from "../../ui/Loader/Loader"
 import { FilmDescription } from "../../ui/FilmDescription/FilmDescription"
+import { filmSchemaType } from "../../api/filmsRequests"
 
 export const FilmPage = () => {
     const {movieId} = useParams()
@@ -31,7 +32,7 @@ export const FilmPage = () => {
 
     return (
         <>
-        <HeroFilm movieData={film.data}/>
+        <HeroFilm movieData={film.data as filmSchemaType}/>
         <FilmDescription movieData={film.data} />
         </>
     )

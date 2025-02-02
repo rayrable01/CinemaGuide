@@ -27,10 +27,10 @@ export const Account = () => {
             console.log('error login')
             return (
                 <MainPageProvider>
-                    <BrowserRouter>
+                    <BrowserRouter basename="/CinemaGuide">
                         <Layout>
                             <Routes>
-                                <Route path="/CinemaGuide" element={<MainPage />} />
+                                <Route path="/" element={<MainPage />} />
                                 <Route path='/genres' element={<GenresPage />} />
                                 <Route path='/movie/:movieId' element={<FilmPage />} />
                                 <Route path='/movies' element={<GenreFilmsPage />} />
@@ -47,7 +47,7 @@ export const Account = () => {
                     <BrowserRouter>
                         <Layout>
                             <Routes>
-                                <Route path="/CinemaGuide" element={<MainPage />} />
+                                <Route path="/" element={<MainPage />} />
                                 <Route path='/genres' element={<GenresPage />} />
                                 <Route path='/movie/:movieId' element={<FilmPage />} />
                                 <Route path='/movies' element={<GenreFilmsPage />} />

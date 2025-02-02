@@ -8,7 +8,7 @@ import { FilmDescription } from "../../ui/FilmDescription/FilmDescription"
 export const FilmPage = () => {
     const {movieId} = useParams()
     const film: ResponseMovieId = useFilmById(Number(movieId))
-
+    
     if (film.isLoading) {
         return (
             <div className={styles.hero__section}>

@@ -3,22 +3,34 @@ import { useFilmsList } from "../../hooks/useFilmsList";
 import Loader from "../../ui/Loader/Loader";
 import styles from './GenreFilmsPage.module.css'
 import { GenreFilmsList } from "../../ui/GenreFilmsList/GenreFilmsList";
-import { ShowMoreButton } from "../../ui/ShowMoreButton/ShowMoreButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const GenreFilmsPage = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const genre = queryParams.get('genre');
-    const [count, setCount] = useState(10);
-
-    const {data, isError, isLoading} = useFilmsList({genre: genre ? genre : '', count: count});
+    const [visibleCount, setVisibleCount] = useState(10);
+    const {data, isError, isLoading} = useFilmsList({genre: genre ? genre : ''});
     
-    const isButtonDisabled = data.length >= 50;
+    const handleScroll = () => {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const fullHeight = document.documentElement.scrollHeight;
 
-    const handleShowMore = () => {
-        setCount((prevCount) => prevCount + 10);
-    }
+        // Проверяем, доскроллил ли пользователь до конца страницы
+        if (scrollTop + windowHeight >= fullHeight - 1) { 
+            setVisibleCount(prevCount => Math.min(prevCount + 10, data.length));
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [data]);
+
+
     
     if (isLoading || isLoading) {
         return (
@@ -51,8 +63,7 @@ export const GenreFilmsPage = () => {
                         <span className={styles.genre__title}>{genre}</span>
                     </h1>
                 </Link>
-                <GenreFilmsList filmsList={data} />
-                <ShowMoreButton onClick={handleShowMore} isDisabled={isButtonDisabled}/>
+                <GenreFilmsList filmsList={data.slice(0, visibleCount)} />
             </div>
         </section>
     )

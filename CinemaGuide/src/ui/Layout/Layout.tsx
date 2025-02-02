@@ -1,4 +1,3 @@
-
 import styles from './Layout.module.css'
 import { Link, useLocation } from "react-router-dom";
 import headerLogo from '../../assets/logo.svg'
@@ -7,7 +6,7 @@ import youtube from '../../assets/youtube.svg'
 import adaptiveIcon from '../../assets/genres.svg'
 import ok from '../../assets/ok.svg'
 import tg from '../../assets/telegram.svg'
-import React, { FC, ReactElement, ReactNode, useContext, useState} from 'react';
+import React, { FC, ReactElement, ReactNode, useContext, useRef, useState} from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { MainPageContext} from '../../pages/MainPage/MainPageContext';
@@ -24,9 +23,16 @@ export const Layout: FC<LayoutProps> = ({children}) => {
     const {isTrailerOpen} = useContext(MainPageContext);
     const [adaptiveListOpen, setAdaptiveListOpen] = useState<boolean>(false);
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 800);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    const handleClickOut = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+            closeModal();
+        }
+    } 
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 800);
@@ -114,8 +120,8 @@ export const Layout: FC<LayoutProps> = ({children}) => {
         </footer>
 
         {isModalOpen && (
-            <div className={styles.modal}>
-                <AuthForm onClick={closeModal} />
+            <div className={styles.modal} onClick={handleClickOut}>
+                <AuthForm onClick={closeModal} forwardedRef={modalRef} />
             </div>
         )}
 

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, ForwardedRef, useState } from "react";
 import styles from './AuthForm.module.css'
 import logo from '../../assets/logo.svg'
 import { RegisterForm } from "../RegisterForm/RegisterForm";
@@ -8,9 +8,10 @@ import { SuccessRegister } from "../SuccessRegister/SuccessRegister";
 
 interface ModalCloseProp {
     onClick: () => void;
+    forwardedRef: ForwardedRef<HTMLDivElement>
 }
 
-export const AuthForm: FC<ModalCloseProp> = ({onClick}) => {
+export const AuthForm: FC<ModalCloseProp> = ({onClick, forwardedRef}) => {
     const [authState, setAuthState] = useState<string>("register");
     const [registrationComplete, setRegistrationComplete] = useState<boolean>(false);
 
@@ -31,7 +32,7 @@ export const AuthForm: FC<ModalCloseProp> = ({onClick}) => {
     };
 
     return (
-            <div className={styles.modal__content}>
+            <div className={styles.modal__content} ref={forwardedRef}>
                 <img src={logo} alt="cinema-logo" className={styles.modal__img}></img>
                 
                 {registrationComplete ? (

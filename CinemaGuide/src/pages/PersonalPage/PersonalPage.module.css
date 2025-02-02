@@ -146,11 +146,27 @@
     gap: 10px;
 }
 
+.profile__favorites::after {
+    content: "Избранные фильмы";
+}
+
+.profile__settings::after {
+    content: "Настройки аккаунта";
+}
+
 @media (max-width: 800px) {
     .favorites__list {
         flex-wrap: nowrap;
         overflow: scroll;
         padding: 20px;
+    }
+
+    .profile__favorites::after {
+        content: "Избранные";
+    }
+
+    .profile__settings::after {
+        content: "Настройки";
     }
 
     .list__item {

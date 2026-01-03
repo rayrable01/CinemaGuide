@@ -1,5 +1,6 @@
 import z from "zod";
 import { validateResponse } from "./validateRespose";
+import axios from "axios";
 
 const API_URL = 'https://cinemaguide.skillbox.cc'
 
@@ -43,19 +44,34 @@ export type AuthInfoSchemaType = z.infer<typeof AuthInfoSchema>
 
 
 // Функция регистрации пользователя.
-export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void>  => {
-    return fetch(`${API_URL}/user`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
+// export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void>  => {
+//     return fetch(`${API_URL}/user`, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             email: email,
+//             password: password,
+//             name: name,
+//             surname: surname
+//         })
+//     }).then(validateResponse).then(() => undefined);
+// }
+
+export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void> => {
+    return axios.post(`${API_URL}/user`, {
+            email,
+            password,
+            name,
+            surname
         },
-        body: JSON.stringify({
-            email: email,
-            password: password,
-            name: name,
-            surname: surname
-        })
-    }).then(validateResponse).then(() => undefined);
+        {
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }
+    ).then(() => undefined)
 }
 
 // Функция логина пользователя

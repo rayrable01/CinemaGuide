@@ -10,11 +10,11 @@
     "lint": "eslint .",
     "predeploy": "npm run build",
     "deploy": "gh-pages -r https://github.com/rayrable01/CinemaGuide.git -b gh-pages -d dist"
-
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query": "^5.59.16",
+    "axios": "^1.13.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",

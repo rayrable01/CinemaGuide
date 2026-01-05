@@ -1,8 +1,8 @@
 import z from 'zod'
-import { validateResponse } from './validateRespose';
 import { queryClient } from './queryClient';
+import axios from 'axios';
 
-const API_URL = 'https://cinemaguide.skillbox.cc'
+const API_URL = import.meta.env.VITE_API_URL
 
 // Схема фильма.
 export const filmSchema = z.object({
@@ -67,35 +67,24 @@ export const fetchFilmsList = (params: FilmListParams): Promise<fetchFilmsListTy
     // Собираем полный URL
     const url = `${API_URL}/movie?${query.toString()}`;
 
-    return fetch(url)
-        .then(response => validateResponse(response))
-        .then(res => res.json())
-        .then(data => fetchFilmsListSchema.parse(data));
+    return axios.get(url)
+        .then(res => fetchFilmsListSchema.parse(res.data));
 };
 
 
 // Функция на получение топ 10 фильмов.
 export const fetchTopFilmsList = (): Promise<fetchFilmsListType> => {
-    return fetch(`${API_URL}/movie/top10`)
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => fetchFilmsListSchema.parse(data))
-};
+    return axios.get(`${API_URL}/movie/top10`).then(res => fetchFilmsListSchema.parse(res.data))
+}
 
 // РАНДОМ ФИЛЬМ
 export const fetchRandomFilm = (): Promise<filmSchemaType> => {
-    return fetch(`${API_URL}/movie/random`)
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => filmSchema.parse(data));
+    return axios.get(`${API_URL}/movie/random`).then(res => filmSchema.parse(res.data))
 }
 
 // Получение фильма по ID
 export const fetchFilmId = (movieId: number): Promise<filmSchemaType> => {
-    return fetch(`${API_URL}/movie/${movieId}`)
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => filmSchema.parse(data));
+    return axios.get(`${API_URL}/movie/${movieId}`).then(res => filmSchema.parse(res.data))
 }
 
 // Получение жанров фильмов
@@ -105,38 +94,37 @@ export const genreListSchema = z.array(genreSchema);
 export type genreSchemaType = z.infer<typeof genreSchema>
 export type genreListShemaType = z.infer<typeof genreListSchema>
 
+
 export const fetchFilmsGenre = (): Promise<genreListShemaType> => {
-    return fetch(`${API_URL}/movie/genres`)
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => genreListSchema.parse(data));
-};
+    return axios.get(`${API_URL}/movie/genres`).then(res => genreListSchema.parse(res.data))
+}
 
 // Получение любимых фильмов
-export const fetchFavoritesFilms = (): Promise<filmsListType>  => {
-    return fetch(`${API_URL}/favorites`, {
-        method: "GET",
-        credentials: "include",
-    })
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => filmsListSchema.parse(data));
+export const fetchFavoritesFilms = (): Promise<filmsListType> => {
+    return axios.get(`${API_URL}/favorites`, {
+        withCredentials: true
+    }).then(res => filmsListSchema.parse(res.data))
 }
 
 export const addFavoriteFilm = (id: number): Promise<void> => {
-    return fetch(`${API_URL}/favorites`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        credentials: "include",
-        body: `id=${encodeURIComponent(id.toString())}`,
-    }).then(validateResponse).then(() => {queryClient.invalidateQueries({queryKey: ['favoriteFilms']})}).then(() => undefined);
-}
+    return axios.post(
+        `${API_URL}/favorites`,
+        new URLSearchParams({ id: id.toString() }),
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            withCredentials: true,
+        }
+    )
+    .then(() => {
+        queryClient.invalidateQueries({ queryKey: ['favoriteFilms'] });
+    })
+};
+
 
 export const removeFavoriteFilm = (movieId: number): Promise<void> => {
-    return fetch(`${API_URL}/favorites/${movieId}`, {
-        method: 'DELETE',
-        credentials: "include",
-    }).then(validateResponse).then(() => undefined)
+    return axios.delete(`${API_URL}/favorites/${movieId}`, {
+        withCredentials: true
+    })
 }

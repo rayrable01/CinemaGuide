@@ -20,7 +20,7 @@ export const SettingsPage: FC<SettingsPageProps> = ({userData}) => {
         onSuccess: () => {
             console.log('logout success')
             queryClient.invalidateQueries({queryKey: ["users", "me"]})
-            navigate("/")
+            navigate("/CinemaGuide/")
         },
         mutationKey: ["users", "me"],
         onError: (error) => {

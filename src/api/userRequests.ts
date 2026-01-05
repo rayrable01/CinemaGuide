@@ -1,8 +1,7 @@
 import z from "zod";
-import { validateResponse } from "./validateRespose";
 import axios from "axios";
 
-const API_URL = 'https://cinemaguide.skillbox.cc'
+const API_URL = import.meta.env.VITE_API_URL
 
 // Схема пользователя. 
 export const userSchema = z.object({
@@ -34,7 +33,6 @@ export type RegisterValidationType = z.infer<typeof registerValidationSchema>;
 export type RegisterDataType = z.infer<typeof registerDataSchema>
 
 // Схема аунтефикации ( логина )
-
 export const AuthInfoSchema = z.object({
     email: z.string().regex(/@.*\.(com|ru)$/, 'Некорректный email'),
     password: z.string(),
@@ -44,21 +42,6 @@ export type AuthInfoSchemaType = z.infer<typeof AuthInfoSchema>
 
 
 // Функция регистрации пользователя.
-// export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void>  => {
-//     return fetch(`${API_URL}/user`, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             email: email,
-//             password: password,
-//             name: name,
-//             surname: surname
-//         })
-//     }).then(validateResponse).then(() => undefined);
-// }
-
 export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void> => {
     return axios.post(`${API_URL}/user`, {
             email,
@@ -71,46 +54,42 @@ export const registerUser = ({email, password, name, surname}: RegisterDataType)
                 "Content-Type": "application/json"
             },
         }
-    ).then(() => undefined)
+    )
 }
 
 // Функция логина пользователя
 export const loginUser = ({email, password}: AuthInfoSchemaType): Promise<void> => {
-    return fetch(`${API_URL}/auth/login`, {
-        method: "POST",
+    return axios.post(`${API_URL}/auth/login`, 
+    {
+        email,
+        password
+    }, 
+    {
         headers: {
             "Content-Type": "application/json"
         },
-        credentials: "include",
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    }).then(validateResponse).then(() => undefined);
+        withCredentials: true,
+    })
 }
 
 // Функция логаута пользователя
 export const logoutUser = (): Promise<void> => {
-    return fetch(`${API_URL}/auth/logout`, {
-        method: "GET",
-        credentials: 'include',
+    return axios.get(`${API_URL}/auth/logout`, {
+        withCredentials: true,
         headers: {
             "Content-Type": "application/json"
         }
-    }).then(validateResponse).then(() => undefined);
+    })
 }
 
 // Функция проверки данных об пользователе
 export const fetchMe = (): Promise<userSchemaType> => {
-    return fetch(`${API_URL}/profile`, {
-        method: "GET",
+    return axios.get(`${API_URL}/profile`, {
+        withCredentials: true,
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             accept: "application/json"
-        },
-        credentials: "include"
+        }
     })
-    .then(response => validateResponse(response))
-    .then(res => res.json())
-    .then(data => userSchema.parse(data));
+    .then(res => userSchema.parse(res.data))
 }

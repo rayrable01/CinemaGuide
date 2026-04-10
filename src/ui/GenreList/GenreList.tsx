@@ -1,11 +1,11 @@
-import { FC } from 'react'
-import { genreListShemaType } from '../../api/filmsRequests'
-import styles from './GenreList.module.css'
-import { GenreCard } from '../GenreCard/GenreCard'
-import image from '../../assets/advanture.png'
+import { FC } from "react";
+import { genreListShemaType } from "../../api/filmsRequests";
+import styles from "./GenreList.module.css";
+import { GenreCard } from "../GenreCard/GenreCard";
+import image from "../../assets/advanture.png";
 
 interface GenreListProps {
-    data: genreListShemaType | undefined
+  data: genreListShemaType | undefined;
 }
 
 // const urlArray = [
@@ -31,15 +31,15 @@ interface GenreListProps {
 //     '../../assets/triller.png',
 // ]
 
-export const GenreList: FC<GenreListProps> = ({data}) => {
-
-    return (
-        <ul className={styles.genre__list}>
-            {Array.isArray(data) && data.map((genre, index) => (
-                <li className={styles.genre__item} key={index}>
-                    <GenreCard title={genre} imageUrl={image} />
-                </li>
-            ))}
-        </ul>
-    )
-}
+export const GenreList: FC<GenreListProps> = ({ data }) => {
+  return (
+    <ul className={styles.genre__list}>
+      {Array.isArray(data) &&
+        data.map((genre, index) => (
+          <li className={styles.genre__item} key={index}>
+            <GenreCard title={genre} imageUrl={image} />
+          </li>
+        ))}
+    </ul>
+  );
+};

@@ -1,95 +1,110 @@
 import z from "zod";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 
-// Схема пользователя. 
+// Схема пользователя.
 export const userSchema = z.object({
-    name: z.string(),
-    surname: z.string(),
-    email: z.string(),
-    favorites: z.array(z.string())
-})
+  name: z.string(),
+  surname: z.string(),
+  email: z.string(),
+  favorites: z.array(z.string()),
+});
 
-export type userSchemaType = z.infer<typeof userSchema>
+export type userSchemaType = z.infer<typeof userSchema>;
 
 // Схема регистрации
 export const registerDataSchema = z.object({
-    email: z.string().regex(/@.*\.(com|ru)$/, 'Некорректный email'),
-    password: z.string().min(6, "Пароль должен содержать минимум 6 симоволов"), 
-    name: z.string().min(1, 'Поле обязательно к заполнению'),
-    surname: z.string().min(1, 'Поле обязательно к заполнению'),
-})
-
-export const registerValidationSchema = registerDataSchema.extend({
-    confirmPassword: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
-    }).refine((data) => data.password === data.confirmPassword, {
-        path: ["confirmPassword"],
-        message: "Пароли не совпадают",
+  email: z.string().regex(/@.*\.(com|ru)$/, "Некорректный email"),
+  password: z.string().min(6, "Пароль должен содержать минимум 6 симоволов"),
+  name: z.string().min(1, "Поле обязательно к заполнению"),
+  surname: z.string().min(1, "Поле обязательно к заполнению"),
 });
 
+export const registerValidationSchema = registerDataSchema
+  .extend({
+    confirmPassword: z
+      .string()
+      .min(6, "Пароль должен содержать минимум 6 символов"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Пароли не совпадают",
+  });
 
 export type RegisterValidationType = z.infer<typeof registerValidationSchema>;
-export type RegisterDataType = z.infer<typeof registerDataSchema>
+export type RegisterDataType = z.infer<typeof registerDataSchema>;
 
 // Схема аунтефикации ( логина )
 export const AuthInfoSchema = z.object({
-    email: z.string().regex(/@.*\.(com|ru)$/, 'Некорректный email'),
-    password: z.string(),
-})
+  email: z.string().regex(/@.*\.(com|ru)$/, "Некорректный email"),
+  password: z.string(),
+});
 
-export type AuthInfoSchemaType = z.infer<typeof AuthInfoSchema>
-
+export type AuthInfoSchemaType = z.infer<typeof AuthInfoSchema>;
 
 // Функция регистрации пользователя.
-export const registerUser = ({email, password, name, surname}: RegisterDataType): Promise<void> => {
-    return axios.post(`${API_URL}/user`, {
-            email,
-            password,
-            name,
-            surname
-        },
-        {
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }
-    )
-}
+export const registerUser = ({
+  email,
+  password,
+  name,
+  surname,
+}: RegisterDataType): Promise<void> => {
+  return axios.post(
+    `${API_URL}/user`,
+    {
+      email,
+      password,
+      name,
+      surname,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+};
 
 // Функция логина пользователя
-export const loginUser = ({email, password}: AuthInfoSchemaType): Promise<void> => {
-    return axios.post(`${API_URL}/auth/login`, 
+export const loginUser = ({
+  email,
+  password,
+}: AuthInfoSchemaType): Promise<void> => {
+  return axios.post(
+    `${API_URL}/auth/login`,
     {
-        email,
-        password
-    }, 
+      email,
+      password,
+    },
     {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        withCredentials: true,
-    })
-}
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    },
+  );
+};
 
 // Функция логаута пользователя
 export const logoutUser = (): Promise<void> => {
-    return axios.get(`${API_URL}/auth/logout`, {
-        withCredentials: true,
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-}
+  return axios.get(`${API_URL}/auth/logout`, {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
 
 // Функция проверки данных об пользователе
 export const fetchMe = (): Promise<userSchemaType> => {
-    return axios.get(`${API_URL}/profile`, {
-        withCredentials: true,
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            accept: "application/json"
-        }
+  return axios
+    .get(`${API_URL}/profile`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        accept: "application/json",
+      },
     })
-    .then(res => userSchema.parse(res.data))
-}
+    .then((res) => userSchema.parse(res.data));
+};

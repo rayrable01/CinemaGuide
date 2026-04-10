@@ -6,39 +6,41 @@
 }
 
 main {
-	flex: 1;
-	background-color: var(--background-black);
+  flex: 1;
+  background-color: var(--background-black);
 }
 
 :root {
-	--background-white: #fff;
-	--background-black: #0a0b0b;
-	--background-black-disabled: #747474;
-	--background-brand-disabled: #d6d2f1;
-	--content-secondary: rgba(255, 255, 255, 0.7);
-	--background-brand-hovered: #8577e1;
-	--content-placeholder: rgba(0, 0, 0, 0.4);
-	--content-active: #b4a9ff;
-	--background-brand-active: #6a5dc2;
-	--content-black: #000;
-	--background-secondary: #393b3c;
-	--background-disabled: rgba(255, 255, 255, 0.5);
-	--content-disabled: rgba(255, 255, 255, 0.5);
-	--content-primary: #fff;
+  --background-white: #fff;
+  --background-black: #0a0b0b;
+  --background-black-disabled: #747474;
+  --background-brand-disabled: #d6d2f1;
+  --content-secondary: rgba(255, 255, 255, 0.7);
+  --background-brand-hovered: #8577e1;
+  --content-placeholder: rgba(0, 0, 0, 0.4);
+  --content-active: #b4a9ff;
+  --background-brand-active: #6a5dc2;
+  --content-black: #000;
+  --background-secondary: #393b3c;
+  --background-disabled: rgba(255, 255, 255, 0.5);
+  --content-disabled: rgba(255, 255, 255, 0.5);
+  --content-primary: #fff;
 }
 
 @font-face {
-  font-family: 'Play';
-  src:  url('./assets/fonts/Play-Regular.woff2') format('woff2'),
-        url('./assets/fonts/Play-Regular.woff') format('woff');
+  font-family: "Play";
+  src:
+    url("./assets/fonts/Play-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Play-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Play';
-  src:  url('./assets/fonts/Play-Bold.woff2') format('woff2'),
-        url('./assets/fonts/Play-Regular.woff') format('woff');
+  font-family: "Play";
+  src:
+    url("./assets/fonts/Play-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Play-Regular.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }

@@ -1,0 +1,13 @@
+npx --no -- commitlint --edit "$1" || {
+  echo ""
+  echo "❌ Invalid commit message format"
+  echo ""
+  echo "✔ Use one of these types:"
+  echo "feat: add new feature"
+  echo "fix: bug fix"
+  echo "chore: maintenance"
+  echo "refactor: code refactoring"
+  echo "docs: documentation"
+  echo ""
+  exit 1
+}

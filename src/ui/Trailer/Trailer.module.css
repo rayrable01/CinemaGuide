@@ -1,22 +1,22 @@
 .modal__content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--content-disabled);
-    width: 960px;
-    height: 540px;
-    background-color: grey;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--content-disabled);
+  width: 960px;
+  height: 540px;
+  background-color: grey;
 }
 
 .modal__content .modal__close {
-    right: -75px;
-    position: absolute;
+  right: -75px;
+  position: absolute;
 }
 
 @media (max-width: 1150px) {
-    .modal__content .modal__close {
-        right: 20px;
-        top: 20px;
-    }
+  .modal__content .modal__close {
+    right: 20px;
+    top: 20px;
+  }
 }

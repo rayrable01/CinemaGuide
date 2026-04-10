@@ -3,7 +3,7 @@ body {
   margin: 0;
   height: 100%;
 
-  font-family: 'Play', sans-serif
+  font-family: "Play", sans-serif;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
 }
 
 button {
-  font-family: 'Play', sans-serif;
+  font-family: "Play", sans-serif;
 }
 
 html {
@@ -30,14 +30,17 @@ a {
 }
 
 img {
-  max-width: 100%
+  max-width: 100%;
 }
 
 p {
   margin: 0;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
   margin: 0;
 }
 

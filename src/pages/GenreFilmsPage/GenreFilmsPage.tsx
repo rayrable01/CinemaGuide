@@ -4,6 +4,7 @@ import Loader from "../../ui/Loader/Loader";
 import styles from "./GenreFilmsPage.module.css";
 import { GenreFilmsList } from "../../ui/GenreFilmsList/GenreFilmsList";
 import { useEffect, useState } from "react";
+import { ErrorPage } from "../ErrorPage/ErrorPage";
 
 export const GenreFilmsPage = () => {
   const location = useLocation();
@@ -32,26 +33,12 @@ export const GenreFilmsPage = () => {
     };
   }, [data]);
 
-  if (isLoading || isLoading) {
-    return (
-      <div className={styles.films__section}>
-        <div className={styles.films__container}>
-          <Loader />
-        </div>
-      </div>
-    );
+  if (isLoading) {
+    return <Loader />;
   }
 
-  if (isError || isError) {
-    return (
-      <div className={styles.films__section}>
-        <div className={styles.films__container}>
-          <p className={styles.films__error}>
-            Произошла ошибка, перезагрузите страницу.
-          </p>
-        </div>
-      </div>
-    );
+  if (isError) {
+    return <ErrorPage title={`Произошла ошибка загрузки жанра ${genre} `} />;
   }
 
   return (

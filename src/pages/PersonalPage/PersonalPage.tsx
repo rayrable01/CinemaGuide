@@ -1,36 +1,22 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./PersonalPage.module.css";
-import customStyles from "../MainPage/MainPage.module.css";
 import { useContext } from "react";
 import { MainPageContext } from "../MainPage/MainPageContext";
 import { SettingsPage } from "../SettingsPage/SettingsPage";
 import { FavoritesPage } from "../FavoritesPage/FavoritesPage";
 import Loader from "../../ui/Loader/Loader";
+import { ErrorPage } from "../ErrorPage/ErrorPage";
 
 export const PersonalPage = () => {
   const { userData, favoriteFilms } = useContext(MainPageContext);
   const location = useLocation();
 
   if (favoriteFilms.isLoading || userData.isLoading) {
-    return (
-      <div className={customStyles.hero__section}>
-        <div className={customStyles.hero__container}>
-          <Loader />
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (favoriteFilms.isError || userData.isError) {
-    return (
-      <div className={customStyles.hero__section}>
-        <div className={customStyles.hero__container}>
-          <p className={customStyles.hero__error}>
-            Произошла ошибка, перезагрузите страницу.
-          </p>
-        </div>
-      </div>
-    );
+    return <ErrorPage title="Произошла ошибка загрузки личного кабинета" />;
   }
 
   return (

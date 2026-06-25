@@ -11,8 +11,16 @@ interface ModalCloseProp {
   forwardedRef: ForwardedRef<HTMLDivElement>;
 }
 
+enum AUTH_STATUS {
+  REGISTRATION = "registration",
+  LOGIN = "login",
+  SUCCESS = "success",
+}
+
 export const AuthForm: FC<ModalCloseProp> = ({ onClick, forwardedRef }) => {
-  const [authState, setAuthState] = useState<string>("register");
+  const [authState, setAuthState] = useState<AUTH_STATUS>(
+    AUTH_STATUS.REGISTRATION,
+  );
   const [registrationComplete, setRegistrationComplete] =
     useState<boolean>(false);
 
@@ -22,12 +30,14 @@ export const AuthForm: FC<ModalCloseProp> = ({ onClick, forwardedRef }) => {
 
   const handleLoginClick = () => {
     setRegistrationComplete(false); // Сброс состояния, если пользователь захочет вернуться к форме
-    setAuthState("auth");
+    setAuthState(AUTH_STATUS.LOGIN);
   };
 
   const handleSwitch = () => {
     setAuthState((prevState) =>
-      prevState === "register" ? "auth" : "register",
+      prevState === AUTH_STATUS.REGISTRATION
+        ? AUTH_STATUS.LOGIN
+        : AUTH_STATUS.REGISTRATION,
     );
   };
 
@@ -37,7 +47,7 @@ export const AuthForm: FC<ModalCloseProp> = ({ onClick, forwardedRef }) => {
 
       {registrationComplete ? (
         <SuccessRegister onClick={handleLoginClick} />
-      ) : authState === "register" ? (
+      ) : authState === AUTH_STATUS.REGISTRATION ? (
         <RegisterForm completeReg={handleRegistrationSuccess} />
       ) : (
         <LoginForm />
@@ -45,7 +55,9 @@ export const AuthForm: FC<ModalCloseProp> = ({ onClick, forwardedRef }) => {
 
       {!registrationComplete && (
         <button className={styles.modal__switch} onClick={handleSwitch}>
-          {authState === "register" ? "У меня есть пароль" : "Регистрация"}
+          {authState === AUTH_STATUS.REGISTRATION
+            ? "У меня есть пароль"
+            : "Регистрация"}
         </button>
       )}
       <ModalClose onClick={onClick} />

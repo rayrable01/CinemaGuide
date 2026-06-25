@@ -1,31 +1,18 @@
 import { useFilmsGenre } from "../../hooks/useFilmsGenre";
 import { GenreList } from "../../ui/GenreList/GenreList";
 import Loader from "../../ui/Loader/Loader";
+import { ErrorPage } from "../ErrorPage/ErrorPage";
 import styles from "./GenresPage.module.css";
 
 export const GenresPage = () => {
   const { data, isError, isLoading } = useFilmsGenre();
 
   if (isLoading) {
-    return (
-      <div className={styles.genres__section}>
-        <div className={styles.genres__container}>
-          <Loader />
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (isError) {
-    return (
-      <div className={styles.genres__section}>
-        <div className={styles.genres__container}>
-          <p className={styles.genres__error}>
-            Произошла ошибка, перезагрузите страницу.
-          </p>
-        </div>
-      </div>
-    );
+    return <ErrorPage title="Произошла ошибка загрузкиж жанров" />;
   }
 
   return (

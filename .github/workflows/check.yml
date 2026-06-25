@@ -13,11 +13,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install deps
         run: |
           npm cache clean --force
-          npm ci
+          npm install
 
       - name: Lint
         run: npm run lint
@@ -32,11 +33,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install deps
         run: |
           npm cache clean --force
-          npm ci
+          npm install
 
       - name: Unit tests
         run: npm run test

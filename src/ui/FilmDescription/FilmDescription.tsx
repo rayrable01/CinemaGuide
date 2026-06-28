@@ -6,7 +6,7 @@ interface FilmDescriptionProps {
   movieData: filmSchemaType | undefined;
 }
 
-function formatCurrency(amount): string {
+function formatCurrency(amount: string | null): string | null {
   if (amount === null) return amount;
 
   return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " $";

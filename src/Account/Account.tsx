@@ -28,7 +28,7 @@ export const Account = () => {
     case "error":
       return (
         <MainPageProvider>
-          <BrowserRouter basename="/CinemaGuide/">
+          <BrowserRouter>
             <Layout>
               <Routes>
                 <Route path="/" element={<MainPage />} />
